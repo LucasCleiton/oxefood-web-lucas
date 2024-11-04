@@ -1,22 +1,25 @@
 import React from "react";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
+import MenuSistema from '../../MenuSistema';
 
-export default function FormCliente () {
+
+
+export default function FormCliente() {
 
     return (
 
         <div>
-
-            <div style={{marginTop: '3%'}}>
+            <MenuSistema tela={'cliente'} />
+            <div style={{ marginTop: '3%' }}>
 
                 <Container textAlign='justified' >
 
-                    <h2> <span style={{color: 'darkgray'}}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
+                    <h2> <span style={{ color: 'darkgray' }}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
 
                     <Divider />
 
-                    <div style={{marginTop: '4%'}}>
+                    <div style={{ marginTop: '4%' }}>
 
                         <Form>
 
@@ -36,29 +39,29 @@ export default function FormCliente () {
                                     <InputMask
                                         required
                                         mask="999.999.999-99"
-                                    /> 
+                                    />
                                 </Form.Input>
 
                             </Form.Group>
-                            
+
                             <Form.Group>
 
                                 <Form.Input
                                     fluid
                                     label='Fone Celular'
                                     width={6}>
-                                    <InputMask 
+                                    <InputMask
                                         mask="(99) 9999.9999"
-                                    /> 
+                                    />
                                 </Form.Input>
 
                                 <Form.Input
                                     fluid
                                     label='Fone Fixo'
                                     width={6}>
-                                    <InputMask 
+                                    <InputMask
                                         mask="(99) 9999.9999"
-                                    /> 
+                                    />
                                 </Form.Input>
 
                                 <Form.Input
@@ -66,18 +69,18 @@ export default function FormCliente () {
                                     label='Data Nascimento'
                                     width={6}
                                 >
-                                    <InputMask 
-                                        mask="99/99/9999" 
+                                    <InputMask
+                                        mask="99/99/9999"
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
-                                    /> 
+                                    />
                                 </Form.Input>
 
                             </Form.Group>
-                        
+
                         </Form>
-                        
-                        <div style={{marginTop: '4%'}}>
+
+                        <div style={{ marginTop: '4%' }}>
 
                             <Button
                                 type="button"
@@ -90,7 +93,7 @@ export default function FormCliente () {
                                 <Icon name='reply' />
                                 Voltar
                             </Button>
-                                
+
                             <Button
                                 inverted
                                 circular
@@ -106,7 +109,7 @@ export default function FormCliente () {
                         </div>
 
                     </div>
-                    
+
                 </Container>
             </div>
         </div>

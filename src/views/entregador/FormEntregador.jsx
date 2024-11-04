@@ -1,13 +1,15 @@
 import React from "react";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon, Radio } from 'semantic-ui-react';
+import MenuSistema from '../../MenuSistema';
+
 
 export default function FormCliente() {
 
     return (
 
         <div>
-
+            <MenuSistema tela={'Entregador'} />
             <div style={{ marginTop: '3%' }}>
 
                 <Container textAlign='justified' >
