@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 
 
 
-export default function FormCliente() {
+export default function FormProduto() {
+
+    const [titulo, setTitulo] = useState();
+    const [codigo, setCodigo] = useState();
+    const [descricao, setDescricao] = useState();
+    const [valorUnitario, setValorUnitario] = useState();
+    const [tempoEntregaMinimo, setTempoEntregaMinimo] = useState();
+    const [tempoEntregaMaximo, setTempoEntregaMaximo] = useState();
+
+    function salvar() {
+
+        let produtoRequest = {
+            titulo: titulo,
+            codigo: codigo,
+            descricao: descricao,
+            valorUnitario: valorUnitario,
+            tempoEntregaMinimo: tempoEntregaMinimo,
+            tempoEntregaMaximo: tempoEntregaMaximo
+        }
+
+        axios.post("http://localhost:8080/api/produto", produtoRequest)
+            .then((response) => {
+                console.log('Produto cadastrado com sucesso.')
+            })
+            .catch((error) => {
+                console.log('Erro ao incluir o um Produto.')
+            })
+    }
 
     return (
 
@@ -38,6 +66,8 @@ export default function FormCliente() {
                                         required
                                         mask=""
                                         placeholder="Informe o titulo do produto"
+                                        value={titulo}
+                                        onChange={e => setTitulo(e.target.value)}
                                     />
 
                                 </Form.Input>
@@ -51,6 +81,8 @@ export default function FormCliente() {
                                         required
                                         mask=""
                                         placeholder="Informe o código do produto"
+                                        value={codigo}
+                                        onChange={e => setCodigo(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -60,7 +92,9 @@ export default function FormCliente() {
 
                                 <div class="field">
                                     <label>Descrição</label>
-                                    <textarea rows="2"></textarea>
+                                    <textarea rows="2"
+                                        value={descricao}
+                                        onChange={e => setDescricao(e.target.value)}></textarea>
                                 </div>
                             </Form.Group>
 
@@ -72,7 +106,8 @@ export default function FormCliente() {
                                     width={6}>
                                     <InputMask
                                         mask=""
-
+                                        value={valorUnitario}
+                                        onChange={e => setValorUnitario(e.target.value)}
 
                                     />
                                 </Form.Input>
@@ -83,6 +118,8 @@ export default function FormCliente() {
                                     width={6}>
                                     <InputMask
                                         mask=""
+                                        value={tempoEntregaMinimo}
+                                        onChange={e => setTempoEntregaMinimo(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -95,6 +132,8 @@ export default function FormCliente() {
                                         mask=""
                                         maskChar={null}
                                         placeholder=""
+                                        value={tempoEntregaMaximo}
+                                        onChange={e => setTempoEntregaMaximo(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -123,6 +162,7 @@ export default function FormCliente() {
                                 labelPosition='left'
                                 color='blue'
                                 floated='right'
+                                onClick={() => salvar()}
                             >
                                 <Icon name='save' />
                                 Salvar

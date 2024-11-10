@@ -1,15 +1,68 @@
 import React, { useState } from "react";
+import axios from "axios";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon, Radio } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 
-export default function FormCliente() {
-    // Estado para controlar o valor selecionado do Radio
-    const [ativo, setAtivo] = useState('');
+export default function FormEntregador() {
 
-    const handleRadioChange = (e, { value }) => {
-        setAtivo(value);
-    };
+    const [nome, setNome] = useState();
+    const [cpf, setCpf] = useState();
+    const [rg, setRg] = useState();
+    const [dataNascimento, setDataNascimento] = useState();
+    const [foneCelular, setFoneCelular] = useState();
+
+    const [foneFixo, setFoneFixo] = useState();
+    const [qtdEntregasRealizadas, setqtdEntregasRealizadas] = useState();
+    const [valorFrete, setValorFrete] = useState();
+    const [enderecoRua, setEnderecoRua] = useState();
+    const [enderecoComplemento, setEnderecoComplemento] = useState();
+
+    const [enderecoNumero, setEnderecoNumero] = useState();
+    const [enderecoBairro, setEnderecoBairro] = useState();
+    const [enderecoCep, setEnderecoCep] = useState();
+    const [enderecoCidade, setEnderecoCidade] = useState();
+    const [enderecoUf, setEnderecoUf] = useState();
+
+    const [ativo, setAtivo] = useState();
+
+    function salvar() {
+
+        let entregadorRequest = {
+
+            nome: nome,
+            cpf: cpf,
+            rg: rg,
+            dataNascimento: dataNascimento,
+            foneCelular: foneCelular,
+
+            foneFixo: foneFixo,
+            qtdEntregasRealizadas: qtdEntregasRealizadas,
+            valorFrete: valorFrete,
+            enderecoRua: enderecoRua,
+            enderecoComplemento: enderecoComplemento,
+
+            enderecoNumero: enderecoNumero,
+            enderecoBairro: enderecoBairro,
+            enderecoCep: enderecoCep,
+            enderecoCidade: enderecoCidade,
+            enderecoUf: enderecoUf,
+
+            ativo: ativo
+
+        }
+
+        axios.post("http://localhost:8080/api/entregador", entregadorRequest)
+            .then((response) => {
+                console.log('Entregador cadastrado com sucesso.')
+            })
+            .catch((error) => {
+                console.log('Erro ao incluir o um Entregador.')
+            })
+    }
+
+
+
 
     return (
         <div>
@@ -30,6 +83,8 @@ export default function FormCliente() {
                                     fluid
                                     label='Nome'
                                     maxLength="100"
+                                    value={nome}
+                                    onChange={e => setNome(e.target.value)}
                                 />
                                 <Form.Input
                                     required
@@ -38,6 +93,8 @@ export default function FormCliente() {
                                     <InputMask
                                         required
                                         mask="999.999.999-99"
+                                        value={cpf}
+                                        onChange={e => setCpf(e.target.value)}
                                     />
                                 </Form.Input>
                                 <Form.Input
@@ -46,6 +103,8 @@ export default function FormCliente() {
                                     label='RG'>
                                     <InputMask
                                         mask=""
+                                        value={rg}
+                                        onChange={e => setRg(e.target.value)}
                                     />
                                 </Form.Input>
                             </Form.Group>
@@ -60,6 +119,8 @@ export default function FormCliente() {
                                         mask="99/99/9999"
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
+                                        value={dataNascimento}
+                                        onChange={e => setDataNascimento(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -70,6 +131,8 @@ export default function FormCliente() {
                                     width={6}>
                                     <InputMask
                                         mask="(99) 9999.9999"
+                                        value={foneCelular}
+                                        onChange={e => setFoneCelular(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -79,6 +142,8 @@ export default function FormCliente() {
                                     width={6}>
                                     <InputMask
                                         mask="(99) 9999.9999"
+                                        value={foneFixo}
+                                        onChange={e => setFoneFixo(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -86,11 +151,15 @@ export default function FormCliente() {
                                     fluid
                                     label='QTD Entregas Realizadas'
                                     width={6}
+                                    value={qtdEntregasRealizadas}
+                                    onChange={e => setqtdEntregasRealizadas(e.target.value)}
                                 />
                                 <Form.Input
                                     fluid
                                     label='Valor Por Frete'
                                     width={6}
+                                    value={valorFrete}
+                                    onChange={e => setValorFrete(e.target.value)}
                                 />
                             </Form.Group>
 
@@ -99,11 +168,15 @@ export default function FormCliente() {
                                     fluid
                                     label='Rua'
                                     width={6}
+                                    value={enderecoRua}
+                                    onChange={e => setEnderecoRua(e.target.value)}
                                 />
                                 <Form.Input
                                     fluid
                                     label='Número'
                                     width={6}
+                                    value={enderecoNumero}
+                                    onChange={e => setEnderecoNumero(e.target.value)}
                                 />
                             </Form.Group>
 
@@ -112,16 +185,22 @@ export default function FormCliente() {
                                     fluid
                                     label='Bairro'
                                     width={6}
+                                    value={enderecoBairro}
+                                    onChange={e => setEnderecoBairro(e.target.value)}
                                 />
                                 <Form.Input
                                     fluid
                                     label='Cidade'
                                     width={6}
+                                    value={enderecoCidade}
+                                    onChange={e => setEnderecoCidade(e.target.value)}
                                 />
                                 <Form.Input
                                     fluid
                                     label='CEP'
                                     width={6}
+                                    value={enderecoCep}
+                                    onChange={e => setEnderecoCep(e.target.value)}
                                 />
                             </Form.Group>
 
@@ -129,9 +208,42 @@ export default function FormCliente() {
                                 <div className="ui form">
                                     <div className="field">
                                         <label>UF</label>
-                                        <select className="ui dropdown">
+
+                                        <select className="ui dropdown"
+                                            value={enderecoUf}
+                                            onChange={e => setEnderecoUf(e.target.value)}>
+
+
+
                                             <option value="">Selecione o Estado</option>
-                                            {/* ... outras opções ... */}
+
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
                                         </select>
                                     </div>
                                 </div>
@@ -142,6 +254,8 @@ export default function FormCliente() {
                                     fluid
                                     label='Complemento'
                                     width={6}
+                                    value={enderecoComplemento}
+                                    onChange={e => setEnderecoComplemento(e.target.value)}
                                 />
                             </Form.Group>
 
@@ -152,15 +266,17 @@ export default function FormCliente() {
                                         label='Sim'
                                         name='ativo'
                                         value='sim'
-                                        checked={ativo === 'sim'}
-                                        onChange={handleRadioChange}
+                                        checked={ativo === 'True'}
+                                        onChange={() => setAtivo('True')}
+
                                     />
                                     <Radio
                                         label='Não'
                                         name='ativo'
                                         value='nao'
-                                        checked={ativo === 'nao'}
-                                        onChange={handleRadioChange}
+                                        checked={ativo === 'False'}
+                                        onChange={() => setAtivo('False')}
+
                                     />
                                 </Form.Field>
                             </Form.Group>
@@ -186,6 +302,7 @@ export default function FormCliente() {
                                 labelPosition='left'
                                 color='blue'
                                 floated='right'
+                                onClick={() => salvar()}
                             >
                                 <Icon name='save' />
                                 Salvar
