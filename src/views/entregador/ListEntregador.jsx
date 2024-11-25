@@ -100,7 +100,7 @@ export default function ListEntregador() {
                                                 title='Clique aqui para ver registro'
                                                 icon
                                                 onClick={() => verRegistro(entregador.id)}>
-                                                <Icon name='circle' />
+                                                <Icon name='file alternate outline' />
                                             </Button>
                                             <Button
                                                 inverted
@@ -164,9 +164,27 @@ export default function ListEntregador() {
                     <Modal.Content>
                         <p><strong>Nome:</strong> {entregadorSelecionado.nome}</p>
                         <p><strong>CPF:</strong> {entregadorSelecionado.cpf}</p>
+                        <p><strong>RG:</strong> {entregadorSelecionado.rg}</p>
                         <p><strong>Data de Nascimento:</strong> {formatarData(entregadorSelecionado.dataNascimento)}</p>
                         <p><strong>Fone Celular:</strong> {entregadorSelecionado.foneCelular}</p>
                         <p><strong>Fone Fixo:</strong> {entregadorSelecionado.foneFixo}</p>
+
+                        <p><strong>Quantidade de entregas:</strong> {entregadorSelecionado.qtdEntregasRealizadas}</p>
+                        <p><strong>Valor Frete:</strong> {entregadorSelecionado.valorFrete}</p>
+
+                        <p><strong>Endereço:</strong></p>
+                        <p><strong>Rua:</strong> {entregadorSelecionado.enderecoRua}</p>
+                        <p><strong>Complemento:</strong> {entregadorSelecionado.enderecoComplemento}</p>
+                        <p><strong>Número:</strong> {entregadorSelecionado.enderecoNumero}</p>
+                        <p><strong>Bairro:</strong> {entregadorSelecionado.enderecoBairro}</p>
+                        <p><strong>CEP:</strong> {entregadorSelecionado.enderecoCep}</p>
+                        <p><strong>Cidade:</strong> {entregadorSelecionado.enderecoCidade}</p>
+                        <p><strong>Endereço:</strong> {entregadorSelecionado.enderecoUf}</p>
+
+
+
+
+
                     </Modal.Content>
                 )}
                 <Modal.Actions>
